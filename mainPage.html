@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="iconPNG.png" type="text/css" rel="icon">
+    <link rel="stylesheet" href="mainPageStyגle.css">
+    <title>Conway's Game of Music</title>
+</head>
+<body>
+    <h1>Game of life</h1>
+    <canvas height=400 id="grid" width=400></canvas>
+    <br/>
+    <label for="loopingCheckbox">Looping</label><input type="checkbox" id="loopingCheckbox" onchange="is_looping = !is_looping">
+    <button id="iterateButton" onclick="turn()">Iterate</button>
+    <button id="resetButton" onclick="reset()">Reset</button><br/>
+    <select onchange="switch_rules()" id="CellChange">
+        <option value=0>Conway's game of life</option>
+        <option value=1>Highlife</option>
+        <option value=2>Seeds</option>
+        <option value=3>Custom</option>
+    </select>
+    <div id="CustomGameProps" hidden>
+        <label for="BirthingNeighbors">Born:</label><input onchange="changeCustomRules()" type="text" id="BirthingNeighbors"/>
+        <label for="NeutralNeighbors">Surviving:</label><input onchange="changeCustomRules()" type="text" id="NeutralNeighbors"/>
+    </div>
+    <script src="GameLogic.js"></script>
+</body>
+</html>
