@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <link href="iconPNG.png" type="text/css" rel="icon">
-    <link rel="stylesheet" href="mainPageStyגle.css">
+    <link rel="stylesheet"  href="mainPageStyle.css">
     <title>Conway's Game of Music</title>
 </head>
 <body>
     <h1>Game of life</h1>
     <canvas height=400 id="grid" width=400></canvas>
     <br/>
+    <label for="gridWidth">Width</label><input type="text" id="gridWidth" value="10" onchange="resizeGrid()" maxlength="2" size="2">
+    <label for="gridHeight">Height</label><input type="text" id="gridHeight" value="10" onchange="resizeGrid()" maxlength="2" size="2"><br/>
     <label for="loopingCheckbox">Looping</label><input type="checkbox" id="loopingCheckbox" onchange="is_looping = !is_looping">
     <button id="iterateButton" onclick="turn()">Iterate</button>
     <button id="resetButton" onclick="reset()">Reset</button><br/>
@@ -17,12 +19,16 @@
         <option value=0>Conway's game of life</option>
         <option value=1>Highlife</option>
         <option value=2>Seeds</option>
+        <option value=3>Rule 90</option>
         <option value=3>Custom</option>
     </select>
     <div id="CustomGameProps" hidden>
         <label for="BirthingNeighbors">Born:</label><input onchange="changeCustomRules()" type="text" id="BirthingNeighbors"/>
         <label for="NeutralNeighbors">Surviving:</label><input onchange="changeCustomRules()" type="text" id="NeutralNeighbors"/>
     </div>
+    <br/>
+    <label for="autoInterval">Autoplay interval [s]: </label><input type="text" id="autoInterval" onchange="autoplayInterval()" value=1 />
+    <label for="autoPlay">Autoplay</label><input type="checkbox" id="autoPlay" onchange="manageAutoplay()"/>
     <script src="GameLogic.js"></script>
 </body>
 </html>
