@@ -44,7 +44,7 @@ class GridManager
         return [Math.floor(position[0] / (this.block_width + this.spacing[0])), Math.floor(position[1] / (this.block_height + this.spacing[1]))];
     }
 
-    resize(canvas, new_grid_size, def_color, background_color)
+    resize(canvas, new_grid_size, def_color, color_in_background)
     {
         this.grid_size = new_grid_size;
         this.canvas_width = canvas.width;
@@ -54,9 +54,10 @@ class GridManager
         this.spacing = [spacing_factor / (1 + spacing_factor) *this.block_width, spacing_factor / (1 + spacing_factor) *this.block_height];
         this.block_height -= this.spacing[1];
         this.block_width -= this.spacing[0];
+        this.background_color = color_in_background;
         this.ctx.beginPath()
-        this.ctx.fillStyle = background_color;
-        this.ctx.rect(0, 0, canvas_width, canvas_height);
+        this.ctx.fillStyle = color_in_background;
+        this.ctx.rect(0, 0, this.canvas_width, this.canvas_height);
         this.ctx.fill();
         this.drawAll(def_color);
     }
@@ -225,7 +226,7 @@ function resizeGrid()
     }
     finally
     {
-        grid.resize(canvas, [new_width, new_height], default_color, "rgb(255, 255, 255)");
+        grid.resize(canvas, [new_width, new_height], default_color, background_color);
         grid_size = [new_width, new_height];
         let new_activation_matrix = []
         for (let x = 0; x < grid.grid_size[0]; x++)
@@ -290,6 +291,9 @@ function autoplayInterval()
     }
 }
 
+
+
+
 let autoplay_id = 0;
 let autoplay_interval = 1;
 let is_autoplay = false;
@@ -300,7 +304,8 @@ ctx.imageSmoothingEnabled = false;
 let canvas = document.getElementById('grid');
 let canvas_width = canvas.width;
 let canvas_height = canvas.height;
-let default_color = "rgb(245,245,245)";
+let background_color = "rgb(255, 255, 255)";
+let default_color = "rgb(235,235,235)";
 let active_color = "rgb(64,64,64)";
 
 let grid_size = [10, 10];
@@ -330,11 +335,7 @@ let basic_rulesets = [{
         "reviving_neighbors":[1],
         "neutral_neighbors":[1]
     }];
-let cell_rules = {
-    "name":"Conway's game of life",
-    "reviving_neighbors":[3],
-    "neutral_neighbors": [2, 3]
-};
+let cell_rules = basic_rulesets[0];
 
 let activation_matrix = []
 for (let x = 0; x < grid_size[0]; x++)

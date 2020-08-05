@@ -1,0 +1,44 @@
+h1 {
+    font-family: serif;
+    color: white;
+}
+
+label {
+    font-family: sans-serif;
+}
+html{
+    background-color: black;
+}
+
+body {
+    background-color: black;
+}
+label {
+    color: white;
+}
+
+button {
+    background-color: #303030;
+    color: white;
+}
+input{
+    color: white;
+    background-color: black;
+}
+
+select {
+    background-color: black;
+    color: white;
+}
+
+option {
+    background-color: black;
+    color: white;
+}
+p {
+    color: white;
+}
+* {
+    border-color: darkgray;
+    color: black;
+}
