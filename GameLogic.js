@@ -156,8 +156,16 @@ function reverseActivation(x, y)
 function switch_rules()
 {
     let selector = document.getElementById("CellChange");
+    let copyFunction = function(ruleset){
+        return {
+            "name": ruleset.name,
+            "reviving_neighbors": ruleset.reviving_neighbors,
+            "neutral_neighbors": ruleset.neutral_neighbors
+        };
+    };
     if (selector.value >= basic_rulesets.length)
     {
+        cell_rules = copyFunction(cell_rules);
         document.getElementById("CustomGameProps").hidden = false;
         cell_rules.name = "custom";
         document.getElementById("NeutralNeighbors").value = "1";
@@ -167,7 +175,7 @@ function switch_rules()
     }
     else{
         document.getElementById("CustomGameProps").hidden = true;
-        cell_rules = basic_rulesets[selector.value];
+        cell_rules = copyFunction(basic_rulesets[selector.value]);
     }
 }
 
